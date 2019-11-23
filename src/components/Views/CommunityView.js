@@ -24,7 +24,7 @@ const CommunityView = ({ navigation }) => {
         <CommunityHeader>Near you</CommunityHeader>
         <div style={{overflowY: 'auto'}}>
           {posts.map((post) => {
-            return (<CommunityPost post={post}/>)
+            return (<CommunityPost key={post.title} post={post}/>)
           })}
         </div>
       </InfoContainer>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import GoogleMapReact, {Polyline} from 'google-map-react'
+import GoogleMapReact from 'google-map-react'
 import styled from 'styled-components'
 
 const getMapOptions = () => {
@@ -56,6 +56,7 @@ const SimpleMap = ({points}) => {
     pointMarkers = points.map( (point) => {
       return (
         <LocationIcon
+        key={point.lat+point.lng}
         src='location.svg'
         lat={point.lat}
         lng={point.lng}
@@ -64,9 +65,9 @@ const SimpleMap = ({points}) => {
     })
     lines = points.map( (point, i) => {
       if (i === 0) {
-        return (<Polyline path={[{ lat: points[i].lat, lng: points[i].lng }, { lat: points[i].lat, lng: points[i].lng }]}/>)
+        return (<div></div>)
       }
-      return (<Polyline path={[{ lat: points[i-1].lat, lng: points[i-1].lng }, { lat: points[i].lat, lng: points[i].lng }]}/>)
+      return (<div></div>)
     })
   }
   const path=[{ lat: 60.278168, lng: 24.596941 }, { lat: 60.275972, lng:24.597269 }]
