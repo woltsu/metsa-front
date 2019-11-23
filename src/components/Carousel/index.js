@@ -6,7 +6,7 @@ const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fafafa;
-  height: ${Math.floor(0.4 * window.screen.height)}px;
+  height: ${Math.floor(0.5 * window.screen.height)}px;
   width: 90%;
   margin: auto;
   margin-top: ${Math.floor(0.05 * window.screen.height)}px;
@@ -21,6 +21,8 @@ const CardHeader = styled.div`
   font-size: 18px;
   font-weight: bold;
   color: white;
+  text-align: center;
+  padding-top: 24px;
 `
 
 const CardContent = styled.div`
@@ -55,12 +57,13 @@ const CardInfoTitle = styled.span`
 `
 
 const CardDescription = styled.div`
-  padding: 1em 2em;
+  padding: 1em 1em;
   border-bottom: 1px solid #969faa;
   margin-bottom: 10px;
   font-size: 13px;
   font-weight: bold;
   color: #969faa;
+  text-align: center;
 `
 
 const CardInfo = ({ icon, children, title }) => {
@@ -86,7 +89,7 @@ const GoBtn = styled.div`
   background-color: #fafafa;
   left: 50%;
   transform: translate(-50%);
-  bottom: ${Math.floor(0.4 * window.screen.height) - 60}px;
+  bottom: ${Math.floor(0.5 * window.screen.height) - 60}px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,11 +98,11 @@ const GoBtn = styled.div`
     0px 1px 18px 0px rgba(0, 0, 0, 0.12);
 `
 
-const Card = ({ option: { title, distance, elevation, locations }, finish }) => {
+const Card = ({ option: { name, distance, elevation, locations, description, adventure: { res } }, finish }) => {
   return (
     <CardContainer>
-      <CardHeader>{title}</CardHeader>
-      <CardDescription>Lorem ipsum! Lorem ipsum! Lorem ipsum! Lorem ipsum!</CardDescription>
+      <CardHeader>{name}</CardHeader>
+      <CardDescription>{description}</CardDescription>
       <CardContent>
         <CardInfo title="Distance" icon="mittari.svg">
           {distance}km
@@ -108,7 +111,7 @@ const Card = ({ option: { title, distance, elevation, locations }, finish }) => 
           {elevation}m
         </CardInfo>
         <CardInfo title="Locations" icon="location3.png">
-          {locations}
+          {res.length}
         </CardInfo>
       </CardContent>
     </CardContainer>
@@ -156,7 +159,7 @@ const CustomCarousel = ({ finish, selectedRoute, setSelectedRoute, options }) =>
           <div style={{ marginTop: '15px' }}>{true ? null : <PagingDots {...props} />}</div>
         )}
         style={{
-          height: '40%',
+          height: '50%',
           position: 'absolute',
           bottom: 0,
           left: '50%',

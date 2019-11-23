@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import Map from '../Map'
 import Page from '../Page'
 import InfoContainer from '../InfoContainer'
 import Carousel from '../Carousel'
 import PointDescription from '../PointDescription'
+import { getAdventure } from '../../api'
 
 const slides = [
   {
@@ -30,6 +32,25 @@ const MapView = () => {
   const [selectedRoute, setSelectedRoute] = useState(0)
   const [showPicker, setShowPicker] = useState(true)
   const [init, setInit] = useState(false)
+  const [adventures, setAdventures] = useState(null)
+  const history = useHistory()
+
+  const fetchAdventure = async d => {
+    const data = await getAdventure(d)
+    setAdventures(data)
+  }
+
+  useEffect(() => {
+    if (history.location.state && history.location.state.difficulty) {
+      fetchAdventure(history.location.state.difficulty)
+    }
+  }, [history.location.state])
+
+  if (adventures) {
+    console.log(adventures[selectedRoute])
+  }
+
+  console.log('selectedRoute', selectedRoute)
 
   useEffect(() => {
     setTimeout(() => {
@@ -40,7 +61,7 @@ const MapView = () => {
   return (
     <Page>
       <Map />
-      {init && (
+      {init && adventures && (
         <>
           {!showPicker ? (
             <InfoContainer>
@@ -49,7 +70,7 @@ const MapView = () => {
           ) : (
             <Carousel
               finish={() => setShowPicker(false)}
-              options={slides}
+              options={adventures}
               selectedRoute={selectedRoute}
               setSelectedRoute={setSelectedRoute}
             />

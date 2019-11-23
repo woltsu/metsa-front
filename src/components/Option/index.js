@@ -39,10 +39,11 @@ const OptionArrow = styled.img`
   width: 36px;
 `
 
-const Option = ({ icon, title, description }) => {
+const Option = ({ icon, title, description, difficulty }) => {
   const history = useHistory()
+  
   return (
-    <OptionContainer onClick={() => history.push({ pathname: '/map', state: { prev: true } })}>
+    <OptionContainer onClick={() => history.push({ pathname: '/map', state: { prev: true, difficulty } })}>
       <OptionSubContainer>
         <OptionIcon src={icon} />
         <OptionDescriptionContainer>
