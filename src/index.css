@@ -15,7 +15,7 @@ body {
   top: 0;
   width: 100%;
   -webkit-overflow-scrolling: touch;
-  transition: transform 1s ease-in-out;
+  transition: transform 0.37s ease-in-out;
 }
 
 .page-enter {
