@@ -15,7 +15,7 @@ const CommunityView = ({ navigation }) => {
   return (
     <Page>
       <Map />
-      <InfoContainer>
+      <InfoContainer minHeight={300}>
         <CommunityHeader>Happening near you</CommunityHeader>
         <div style={{overflowY: 'auto'}}>
           <CommunityPost/>

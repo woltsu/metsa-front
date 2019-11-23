@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const MENU_MAX_HEIGHT = 0.8
 const MENU_WIDTH = 1
-const MENU_MIN_HEIGHT = 60
+let MENU_MIN_HEIGHT = 60
 
 const Menu = styled.div`
   position: absolute;
@@ -15,7 +15,10 @@ const Menu = styled.div`
   ${({ isDragging }) => (!isDragging ? 'transition: transform .4s;' : '')}
 `
 
-const InfoContainer = ({children}) => {
+const InfoContainer = ({children, minHeight}) => {
+  if (minHeight) {
+    MENU_MIN_HEIGHT = minHeight
+  }
   const levels = {
     0: -1,
     1: window.screen.height - 40,
