@@ -10,7 +10,7 @@ import User from './User'
 const supportsHistory = 'pushState' in window.history
 
 const Main = () => {
-  const [showProfile, setShowProfile] = useState(true)
+  const [showProfile, setShowProfile] = useState(false)
 
   return (
     <BrowserRouter forceRefresh={!supportsHistory}>

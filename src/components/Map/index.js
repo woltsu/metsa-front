@@ -21,9 +21,9 @@ const LocationIcon = styled.img`
   width: 2em;
 `
 
-const AnyReactComponent = ({text}: any) => <div>{text}</div>;
+const AnyReactComponent = ({ text }) => <div>{text}</div>
 
-const SimpleMap = ({points}) => {
+const SimpleMap = ({ points }) => {
   let center = {
     lat: 60.22474105,
     lng: 25.14025011
@@ -34,14 +34,8 @@ const SimpleMap = ({points}) => {
       lat: points[0].lat,
       lng: points[0].lng
     }
-    pointMarkers = points.map( (point) => {
-      return (
-        <LocationIcon 
-        src='location.svg'
-        lat={point.lat}
-        lng={point.lng}
-        text={point.text}></LocationIcon>
-      )
+    pointMarkers = points.map(point => {
+      return <LocationIcon src="location.svg" lat={point.lat} lng={point.lng} text={point.text}></LocationIcon>
     })
   }
   const zoom = 15

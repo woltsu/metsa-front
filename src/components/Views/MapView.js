@@ -6,13 +6,22 @@ import Carousel from '../Carousel'
 
 const slides = [
   {
-    title: 'Route 1'
+    title: 'Route 1',
+    distance: 10.5,
+    elevation: 150,
+    locations: 5
   },
   {
-    title: 'Route 2'
+    title: 'Route 2',
+    distance: 10.5,
+    elevation: 150,
+    locations: 5
   },
   {
-    title: 'Route 3'
+    title: 'Route 3',
+    distance: 10.5,
+    elevation: 150,
+    locations: 5
   }
 ]
 
