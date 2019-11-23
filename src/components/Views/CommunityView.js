@@ -12,9 +12,10 @@ const CommunityHeader = styled.span`
 `
 
 const CommunityView = ({ navigation }) => {
+  const points = [{lat: 60.278168, lng: 24.596941, text: 'Muinaisluola'}]
   return (
     <Page>
-      <Map />
+      <Map points={points}/>
       <InfoContainer minHeight={300}>
         <CommunityHeader>Happening near you</CommunityHeader>
         <div style={{overflowY: 'auto'}}>

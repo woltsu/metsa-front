@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import GoogleMapReact from 'google-map-react'
+import styled from 'styled-components'
 
 const getMapOptions = () => {
   return {
@@ -16,12 +17,34 @@ const getMapOptions = () => {
   }
 }
 
-const SimpleMap = () => {
-  const center = {
+const LocationIcon = styled.img`
+  width: 2em;
+`
+
+const AnyReactComponent = ({text}: any) => <div>{text}</div>;
+
+const SimpleMap = ({points}) => {
+  let center = {
     lat: 60.22474105,
     lng: 25.14025011
   }
-  const zoom = 16
+  let pointMarkers = <div></div>
+  if (points) {
+    center = {
+      lat: points[0].lat,
+      lng: points[0].lng
+    }
+    pointMarkers = points.map( (point) => {
+      return (
+        <LocationIcon 
+        src='location.svg'
+        lat={point.lat}
+        lng={point.lng}
+        text={point.text}></LocationIcon>
+      )
+    })
+  }
+  const zoom = 15
   return (
     <div style={{ height: '100vh', width: '100%' }}>
       <GoogleMapReact
@@ -30,6 +53,7 @@ const SimpleMap = () => {
         defaultZoom={zoom}
         options={getMapOptions()}
       >
+        {pointMarkers}
       </GoogleMapReact>
     </div>
   )
