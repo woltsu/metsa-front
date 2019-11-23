@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const MENU_MAX_HEIGHT = 0.8
 const MENU_WIDTH = 1
-const MENU_MIN_HEIGHT = 60
+const MENU_MIN_HEIGHT = 80
 
 const Menu = styled.div`
   position: absolute;
@@ -18,7 +18,7 @@ const Menu = styled.div`
 const InfoContainer = ({children}) => {
   const levels = {
     0: -1,
-    1: window.screen.height - 40,
+    1: window.screen.height - MENU_MIN_HEIGHT,
     2: Math.floor((0.5) * window.screen.height),
     3: window.screen.height - MENU_MAX_HEIGHT * window.screen.height
   }
@@ -41,7 +41,6 @@ const InfoContainer = ({children}) => {
 
   const onDrag = (_, position) => {
     setY(position.y)
-    console.log('position', position.y)
   }
 
   const onStart = () => {
