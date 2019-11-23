@@ -7,6 +7,7 @@ const MENU_WIDTH = 1
 let MENU_MIN_HEIGHT = 60
 
 const Menu = styled.div`
+  font-family: 'Montserrat', sans-serif;
   position: absolute;
   height: 100%;
   width: ${MENU_WIDTH * 100}%;
