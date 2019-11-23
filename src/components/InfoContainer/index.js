@@ -31,7 +31,7 @@ const Dragger = styled.div`
 
 const TopContentContainer = styled.div`
   width: 100%;
-  height: ${window.screen.height - MENU_MAX_HEIGHT * window.screen.height}px;
+  height: ${window.screen.height - (MENU_MAX_HEIGHT * window.screen.height)}px;
   border-bottom: 2px solid #969faa;
 `
 
@@ -51,7 +51,7 @@ const BottomContentContainer = styled.div`
   border-bottom: 2px solid #969faa;
 `
 
-const InfoContainer = ({ children, minHeight }) => {
+const InfoContainer = ({ children, minHeight, topContent, middleContent, bottomContent }) => {
   if (minHeight) {
     MENU_MIN_HEIGHT = minHeight
   }
@@ -59,7 +59,7 @@ const InfoContainer = ({ children, minHeight }) => {
     0: -1,
     1: window.screen.height - MENU_MIN_HEIGHT,
     2: Math.floor(0.5 * window.screen.height),
-    3: window.screen.height - MENU_MAX_HEIGHT * window.screen.height
+    3: window.screen.height - (MENU_MAX_HEIGHT * window.screen.height)
   }
 
   const [x, setX] = useState(Math.floor(0.5 * window.screen.width) - Math.floor((MENU_WIDTH / 2) * window.screen.width))
@@ -102,9 +102,9 @@ const InfoContainer = ({ children, minHeight }) => {
     >
       <Menu isDragging={isDragging}>
         <Dragger />
-        <TopContentContainer>123</TopContentContainer>
-        <MiddleContentContainer>321</MiddleContentContainer>
-        <BottomContentContainer>666</BottomContentContainer>
+        <TopContentContainer>{topContent}</TopContentContainer>
+        <MiddleContentContainer>{middleContent}</MiddleContentContainer>
+        <BottomContentContainer>{bottomContent}</BottomContentContainer>
         {children}
       </Menu>
     </Draggable>

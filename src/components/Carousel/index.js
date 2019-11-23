@@ -144,7 +144,7 @@ const CustomCarousel = ({ finish, selectedRoute, setSelectedRoute, options }) =>
 
   return (
     <div>
-      <GoBtn onClick={finish}>Go!</GoBtn>
+      <GoBtn onClick={finish}>GO</GoBtn>
       <Carousel
         slideIndex={selectedRoute}
         afterSlide={afterSlide}

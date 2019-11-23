@@ -1,9 +1,27 @@
 import React from 'react'
 import styled from 'styled-components'
+import InfoContainer from '../InfoContainer'
 
-const PointDescription = () => {
+const PointHeader = styled.div`
+  margin-top: 30px;
+  width: 100%;
+  font-weight: bold;
+  font-size: 22px;
+  text-align: center;
+`
+
+const PointDescription = ({ point }) => {
+  console.log('point', point)
   return (
-    <p>123</p>
+    <InfoContainer
+      topContent={
+        <PointHeader>
+          {point['Kohdenimi,C,100']}
+        </PointHeader>
+      }
+      middleContent={<p>321</p>}
+      bottomContent={<p>666</p>}
+    />
   )
 }
 

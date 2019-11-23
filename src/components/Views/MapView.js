@@ -33,6 +33,7 @@ const MapView = () => {
   const [showPicker, setShowPicker] = useState(true)
   const [init, setInit] = useState(false)
   const [adventures, setAdventures] = useState(null)
+  const [selectedPoint, setSelectedPoint] = useState(null)
   const history = useHistory()
 
   const fetchAdventure = async d => {
@@ -46,25 +47,21 @@ const MapView = () => {
     }
   }, [history.location.state])
 
-  if (adventures) {
-    console.log(adventures[selectedRoute])
-  }
-
   const getPoints = () => {
     //const points = [{lat: 60.278168, lng: 24.596941, icon:'location.svg', text: 'Muinaisluola'}, {lat: 60.275972, lng:24.597269, icon:'cave.png',text: 'Hieno kivi'}, {lat:60.277539, lng:24.602004, icon:'location.svg', text:'Hieno kuusi'}]
     const points = []
     if (adventures) {
-      adventures[selectedRoute].adventure.res.forEach((p) => {
-        const [lat, lng] = p.coordinates
+      adventures[selectedRoute].adventure.res.forEach(p => {
+        if (!p) return
         points.push({
-          lat,
-          lng,
+          lat: Number(p.lat),
+          lng: Number(p.lng),
           icon: 'location.svg',
-          text: 'test'
+          text: 'test',
+          id: p['Mjtunnus,N,10,0']
         })
       })
     }
-    console.log('points', points)
     return points
   }
 
@@ -74,15 +71,22 @@ const MapView = () => {
     }, 100)
   }, [])
 
+  /* const selected = adventures[selectedRoute].adventure.res.find(p => p['Mjtunnus,N,10,0'] === selectedPoint)
+  console.log('selected', selected) */
+
   return (
     <Page>
-      <Map points={getPoints()} />
+      <Map onPointClick={id => setSelectedPoint(id)} points={getPoints()} />
       {init && adventures && (
         <>
           {!showPicker ? (
-            <InfoContainer>
-              <PointDescription />
-            </InfoContainer>
+            <PointDescription
+              point={
+                !selectedPoint
+                  ? adventures[selectedRoute].adventure.res[0]
+                  : adventures[selectedRoute].adventure.res.find(p => p['Mjtunnus,N,10,0'] === selectedPoint)
+              }
+            />
           ) : (
             <Carousel
               finish={() => setShowPicker(false)}
