@@ -50,7 +50,23 @@ const MapView = () => {
     console.log(adventures[selectedRoute])
   }
 
-  console.log('selectedRoute', selectedRoute)
+  const getPoints = () => {
+    //const points = [{lat: 60.278168, lng: 24.596941, icon:'location.svg', text: 'Muinaisluola'}, {lat: 60.275972, lng:24.597269, icon:'cave.png',text: 'Hieno kivi'}, {lat:60.277539, lng:24.602004, icon:'location.svg', text:'Hieno kuusi'}]
+    const points = []
+    if (adventures) {
+      adventures[selectedRoute].adventure.res.forEach((p) => {
+        const [lat, lng] = p.coordinates
+        points.push({
+          lat,
+          lng,
+          icon: 'location.svg',
+          text: 'test'
+        })
+      })
+    }
+    console.log('points', points)
+    return points
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -60,7 +76,7 @@ const MapView = () => {
 
   return (
     <Page>
-      <Map />
+      <Map points={getPoints()} />
       {init && adventures && (
         <>
           {!showPicker ? (
