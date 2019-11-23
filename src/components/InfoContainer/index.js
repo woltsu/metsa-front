@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const MENU_MAX_HEIGHT = 0.8
 const MENU_WIDTH = 1
-const MENU_MIN_HEIGHT = 80
+let MENU_MIN_HEIGHT = 80
 
 const Menu = styled.div`
   font-family: 'Montserrat', sans-serif;
@@ -13,6 +13,10 @@ const Menu = styled.div`
   width: ${MENU_WIDTH * 100}%;
   background-color: #fafafa;
   bottom: 0;
+  border: solid 1px white;
+  background-color: #fafafa;
+  box-shadow: rgba(0,0,0,0.4) 0 0 10px;
+  border-radius: 1em;
   ${({ isDragging }) => (!isDragging ? 'transition: transform .4s;' : '')}
 `
 
