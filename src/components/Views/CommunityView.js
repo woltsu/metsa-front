@@ -12,7 +12,7 @@ const CommunityHeader = styled.span`
 `
 
 const CommunityView = ({ navigation }) => {
-  const points = [{lat: 60.278168, lng: 24.596941, text: 'Muinaisluola'}, {lat: 60.275972, lng:24.597269, text: 'Hieno kivi'}, {lat:60.277539, lng:24.602004, text:'Hieno kuusi'}]
+  const points = [{lat: 60.278168, lng: 24.596941, icon:'location.svg', text: 'Muinaisluola'}, {lat: 60.275972, lng:24.597269, icon:'cave.png',text: 'Hieno kivi'}, {lat:60.277539, lng:24.602004, icon:'location.svg', text:'Hieno kuusi'}]
   const posts = [
     {title: 'Muinaisluola', location: 'Nuuksio, 5km', text:'Piilotettu esihistoriallisesti merkittävä luola.', poster: {img: 'https://source.unsplash.com/512x512/?face', name: 'Otto L.'}},
     {title: 'Lohkare', location: 'Nuuksio, 5km', text:'Järkyttävän kokoinen möhkäle', poster: {img: 'https://source.unsplash.com/512x512/?face', name: 'Olli W.'}},

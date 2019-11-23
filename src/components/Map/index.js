@@ -64,7 +64,7 @@ const SimpleMap = ({points}) => {
       return (
         <LocationIcon
         key={point.lat+point.lng}
-        src='location.svg'
+        src={point.icon}
         lat={point.lat}
         lng={point.lng}
         text={point.text}></LocationIcon>
@@ -88,7 +88,6 @@ const SimpleMap = ({points}) => {
       return (<div></div>)
     })
   }
-  const path=[{ lat: 60.278168, lng: 24.596941 }, { lat: 60.275972, lng:24.597269 }]
   const zoom = 15
   return (
     <div style={{ height: '100vh', width: '100%' }}>
