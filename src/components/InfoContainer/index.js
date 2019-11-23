@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const MENU_MAX_HEIGHT = 0.8
 const MENU_WIDTH = 1
-const MENU_MIN_HEIGHT = 80
+let MENU_MIN_HEIGHT = 80
 
 const Menu = styled.div`
   font-family: 'Montserrat', sans-serif;
