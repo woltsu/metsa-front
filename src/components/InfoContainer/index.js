@@ -15,19 +15,50 @@ const Menu = styled.div`
   bottom: 0;
   border: solid 1px white;
   background-color: #fafafa;
-  box-shadow: rgba(0,0,0,0.4) 0 0 10px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 0 10px;
   border-radius: 1em;
   ${({ isDragging }) => (!isDragging ? 'transition: transform .4s;' : '')}
 `
 
-const InfoContainer = ({children, minHeight}) => {
+const Dragger = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  width: 28px;
+  border-top: 5px solid #969faa;
+  margin-top: 10px;
+`
+
+const TopContentContainer = styled.div`
+  width: 100%;
+  height: ${window.screen.height - MENU_MAX_HEIGHT * window.screen.height}px;
+  border-bottom: 2px solid #969faa;
+`
+
+const MiddleContentContainer = styled.div`
+  width: 100%;
+  height: ${Math.floor(0.5 * window.screen.height) - (window.screen.height - MENU_MAX_HEIGHT * window.screen.height)}px;
+  border-bottom: 2px solid #969faa;
+`
+
+const BottomContentContainer = styled.div`
+  width: 100%;
+  height: ${Math.floor(
+    window.screen.height -
+      MENU_MIN_HEIGHT -
+      (0.5 * window.screen.height - (window.screen.height - MENU_MAX_HEIGHT * window.screen.height))
+  )}px;
+  border-bottom: 2px solid #969faa;
+`
+
+const InfoContainer = ({ children, minHeight }) => {
   if (minHeight) {
     MENU_MIN_HEIGHT = minHeight
   }
   const levels = {
     0: -1,
     1: window.screen.height - MENU_MIN_HEIGHT,
-    2: Math.floor((0.5) * window.screen.height),
+    2: Math.floor(0.5 * window.screen.height),
     3: window.screen.height - MENU_MAX_HEIGHT * window.screen.height
   }
 
@@ -58,7 +89,6 @@ const InfoContainer = ({children, minHeight}) => {
   const onStop = () => {
     setIsDragging(false)
     setY(getNearestLevel())
-    console.log('lul', getNearestLevel())
   }
 
   return (
@@ -70,7 +100,13 @@ const InfoContainer = ({children, minHeight}) => {
       onDrag={onDrag}
       position={{ x, y }}
     >
-      <Menu isDragging={isDragging}>{children}</Menu>
+      <Menu isDragging={isDragging}>
+        <Dragger />
+        <TopContentContainer>123</TopContentContainer>
+        <MiddleContentContainer>321</MiddleContentContainer>
+        <BottomContentContainer>666</BottomContentContainer>
+        {children}
+      </Menu>
     </Draggable>
   )
 }

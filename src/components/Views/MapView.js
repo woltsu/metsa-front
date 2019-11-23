@@ -3,6 +3,7 @@ import Map from '../Map'
 import Page from '../Page'
 import InfoContainer from '../InfoContainer'
 import Carousel from '../Carousel'
+import PointDescription from '../PointDescription'
 
 const slides = [
   {
@@ -27,7 +28,7 @@ const slides = [
 
 const MapView = () => {
   const [selectedRoute, setSelectedRoute] = useState(0)
-  const [showPicker, setShowPicker] = useState(true)
+  const [showPicker, setShowPicker] = useState(false)
   const [init, setInit] = useState(false)
 
   useEffect(() => {
@@ -42,7 +43,9 @@ const MapView = () => {
       {init && (
         <>
           {!showPicker ? (
-            <InfoContainer />
+            <InfoContainer>
+              <PointDescription />
+            </InfoContainer>
           ) : (
             <Carousel
               finish={() => setShowPicker(false)}
