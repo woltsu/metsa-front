@@ -42,13 +42,20 @@ const calcCenter = (points) => {
   })
 }
 
+const LinePoint = styled.div`
+  border-radius: 100%;
+  width: 1em;
+  height: 1em;
+  background-color: black;
+`
+
 const SimpleMap = ({points}) => {
   let center = {
     lat: 60.22474105,
     lng: 25.14025011
   }
   let pointMarkers = <div></div>
-  let lines = <div></div>
+  let lines = []
   
   if (points) {
     center = calcCenter(points)
@@ -63,9 +70,20 @@ const SimpleMap = ({points}) => {
         text={point.text}></LocationIcon>
       )
     })
-    lines = points.map( (point, i) => {
+    const points2 = [...points, points[0]]
+    points2.forEach( (point, i) => {
       if (i === 0) {
         return (<div></div>)
+      }
+      const n = 5
+      const dlat = (points2[i].lat-points2[i-1].lat)/n
+      const dlng = (points2[i].lng-points2[i-1].lng)/n
+      for(var j=1; j < n; j++){
+        lines = lines.concat((<LinePoint 
+          lat={points2[i-1].lat+j*dlat}
+          lng={points2[i-1].lng+j*dlng}
+          key={points2[i-1].lat+j*dlat+points2[i-1].lng+j*dlng}
+        ></LinePoint>))
       }
       return (<div></div>)
     })
@@ -81,6 +99,7 @@ const SimpleMap = ({points}) => {
         options={getMapOptions()}
       >
         {pointMarkers}
+        {lines}
       </GoogleMapReact>
     </div>
   )
