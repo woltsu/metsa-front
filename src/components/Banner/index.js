@@ -32,6 +32,10 @@ const BannerSubTitle = styled.span`
   font-weight: bold;
   margin-left: 20px;
   margin-bottom: 6em;
+  @media (max-width: 372px) {
+    margin-top: 1em;
+    margin-bottom: 3em;
+  }
 `
 
 const ButtonContainer = styled.div`
