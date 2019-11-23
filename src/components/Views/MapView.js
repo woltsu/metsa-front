@@ -28,7 +28,7 @@ const slides = [
 
 const MapView = () => {
   const [selectedRoute, setSelectedRoute] = useState(0)
-  const [showPicker, setShowPicker] = useState(false)
+  const [showPicker, setShowPicker] = useState(true)
   const [init, setInit] = useState(false)
 
   useEffect(() => {
