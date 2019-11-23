@@ -19,6 +19,14 @@ const Menu = styled.div`
   border-radius: 1em;
   ${({ isDragging }) => (!isDragging ? 'transition: transform .4s;' : '')}
 `
+const Dragger = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  width: 28px;
+  border-top: 5px solid #969faa;
+  margin-top: 10px;
+`
 
 const OldInfoContainer = ({children, minHeight}) => {
   if (minHeight) {
@@ -70,7 +78,10 @@ const OldInfoContainer = ({children, minHeight}) => {
       onDrag={onDrag}
       position={{ x, y }}
     >
-      <Menu isDragging={isDragging}>{children}</Menu>
+      <Menu isDragging={isDragging}>
+        <Dragger/>
+        {children}
+      </Menu>
     </Draggable>
   )
 }
