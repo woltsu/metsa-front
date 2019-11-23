@@ -1,7 +1,7 @@
 import React from 'react'
 import Map from '../Map'
 import Page from '../Page'
-import InfoContainer from '../InfoContainer'
+import OldInfoContainer from '../OldInfoContainer'
 import CommunityPost from '../CommunityPost'
 import styled from 'styled-components'
 
@@ -9,6 +9,7 @@ import styled from 'styled-components'
 const CommunityHeader = styled.span`
   font-size: 1.5em;
   padding: 1em 0.5em 1em 0.5em; 
+  margin: 1em 0em 1em 0em;
 `
 
 const CommunityView = ({ navigation }) => {
@@ -20,14 +21,14 @@ const CommunityView = ({ navigation }) => {
   return (
     <Page>
       <Map points={points}/>
-      <InfoContainer minHeight={300}>
+      <OldInfoContainer minHeight={300}>
         <CommunityHeader>Near you</CommunityHeader>
         <div style={{overflowY: 'auto'}}>
           {posts.map((post) => {
             return (<CommunityPost key={post.title} post={post}/>)
           })}
         </div>
-      </InfoContainer>
+      </OldInfoContainer>
     </Page>
   )
 }
