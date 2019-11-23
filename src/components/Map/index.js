@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import GoogleMapReact, {Polyline} from 'google-map-react'
+import GoogleMapReact from 'google-map-react'
 import styled from 'styled-components'
 
 const getMapOptions = () => {
@@ -42,13 +42,20 @@ const calcCenter = (points) => {
   })
 }
 
+const LinePoint = styled.div`
+  border-radius: 100%;
+  width: 1em;
+  height: 1em;
+  background-color: black;
+`
+
 const SimpleMap = ({points}) => {
   let center = {
     lat: 60.22474105,
     lng: 25.14025011
   }
   let pointMarkers = <div></div>
-  let lines = <div></div>
+  let lines = []
   
   if (points) {
     center = calcCenter(points)
@@ -56,20 +63,31 @@ const SimpleMap = ({points}) => {
     pointMarkers = points.map( (point) => {
       return (
         <LocationIcon
-        src='location.svg'
+        key={point.lat+point.lng}
+        src={point.icon}
         lat={point.lat}
         lng={point.lng}
         text={point.text}></LocationIcon>
       )
     })
-    lines = points.map( (point, i) => {
+    const points2 = [...points, points[0]]
+    points2.forEach( (point, i) => {
       if (i === 0) {
-        return (<Polyline path={[{ lat: points[i].lat, lng: points[i].lng }, { lat: points[i].lat, lng: points[i].lng }]}/>)
+        return (<div></div>)
       }
-      return (<Polyline path={[{ lat: points[i-1].lat, lng: points[i-1].lng }, { lat: points[i].lat, lng: points[i].lng }]}/>)
+      const n = 5
+      const dlat = (points2[i].lat-points2[i-1].lat)/n
+      const dlng = (points2[i].lng-points2[i-1].lng)/n
+      for(var j=1; j < n; j++){
+        lines = lines.concat((<LinePoint 
+          lat={points2[i-1].lat+j*dlat}
+          lng={points2[i-1].lng+j*dlng}
+          key={points2[i-1].lat+j*dlat+points2[i-1].lng+j*dlng}
+        ></LinePoint>))
+      }
+      return (<div></div>)
     })
   }
-  const path=[{ lat: 60.278168, lng: 24.596941 }, { lat: 60.275972, lng:24.597269 }]
   const zoom = 15
   return (
     <div style={{ height: '100vh', width: '100%' }}>
@@ -80,6 +98,7 @@ const SimpleMap = ({points}) => {
         options={getMapOptions()}
       >
         {pointMarkers}
+        {lines}
       </GoogleMapReact>
     </div>
   )
