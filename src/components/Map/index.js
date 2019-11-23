@@ -21,6 +21,27 @@ const LocationIcon = styled.img`
   width: 2em;
 `
 
+const shiftCenter = (center) => {
+  return { lat: center.lat-0.003, lng: center.lng }
+}
+
+const calcCenter = (points) => {
+  let latc_ma = -1000;
+  let latc_mi = 9000;
+  let lngc_ma = -1000;
+  let lngc_mi = 9000;
+  points.forEach(element => {
+    latc_ma = Math.max(latc_ma, element.lat)
+    latc_mi = Math.min(latc_mi, element.lat)
+    lngc_ma = Math.max(lngc_ma, element.lng)
+    lngc_mi = Math.min(lngc_mi, element.lng)
+  });
+  return shiftCenter({
+    lat: (latc_ma+latc_mi)/2,
+    lng: (lngc_ma+lngc_mi)/2
+  })
+}
+
 const SimpleMap = ({points}) => {
   let center = {
     lat: 60.22474105,
@@ -28,11 +49,10 @@ const SimpleMap = ({points}) => {
   }
   let pointMarkers = <div></div>
   let lines = <div></div>
+  
   if (points) {
-    center = {
-      lat: points[0].lat,
-      lng: points[0].lng
-    }
+    center = calcCenter(points)
+    console.log(center)
     pointMarkers = points.map( (point) => {
       return (
         <LocationIcon
@@ -59,7 +79,7 @@ const SimpleMap = ({points}) => {
         defaultZoom={zoom}
         options={getMapOptions()}
       >
-        
+        {pointMarkers}
       </GoogleMapReact>
     </div>
   )
