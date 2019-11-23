@@ -59,22 +59,21 @@ const LocationIcon = styled.img`
 
 
 
-const CommunityPost = () => {
-
+const CommunityPost = ({post}) => {
   return (
     <PostContainer>
       <PostHeader>
-        <PostTitle>Muinaisluola</PostTitle>
+        <PostTitle>{post.title}</PostTitle>
         <Poster>
-          <PosterImg src='https://source.unsplash.com/512x512/?face'></PosterImg>
-          <span>Otto L.</span>
+          <PosterImg src={post.poster.img}></PosterImg>
+          <span>{post.poster.name}</span>
         </Poster>
       </PostHeader>
       <LocationDiv>
         <LocationIcon src='location.svg'></LocationIcon>
-        <span>Nuuksio, 5km</span>
+        <span>{post.location}</span>
       </LocationDiv>
-      <PostText>Piilotettu esihistoriallisesti merkittävä luola.</PostText>
+      <PostText>{post.text}</PostText>
     </PostContainer>
   )
 }
