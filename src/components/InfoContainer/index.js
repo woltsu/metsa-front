@@ -7,6 +7,7 @@ const MENU_WIDTH = 1
 const MENU_MIN_HEIGHT = 80
 
 const Menu = styled.div`
+  font-family: 'Montserrat', sans-serif;
   position: absolute;
   height: 100%;
   width: ${MENU_WIDTH * 100}%;
@@ -15,7 +16,10 @@ const Menu = styled.div`
   ${({ isDragging }) => (!isDragging ? 'transition: transform .4s;' : '')}
 `
 
-const InfoContainer = ({children}) => {
+const InfoContainer = ({children, minHeight}) => {
+  if (minHeight) {
+    MENU_MIN_HEIGHT = minHeight
+  }
   const levels = {
     0: -1,
     1: window.screen.height - MENU_MIN_HEIGHT,
