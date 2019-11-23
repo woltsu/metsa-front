@@ -4,7 +4,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import LandingView from './Views/LandingView'
 import MapView from './Views/MapView'
 import CommunityView from './Views/CommunityView'
-
+ 
 const supportsHistory = 'pushState' in window.history
 
 const Main = () => {
