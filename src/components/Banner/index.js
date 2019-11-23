@@ -24,6 +24,7 @@ const BannerTitle = styled.h2`
   margin: 0;
   margin-left: 20px;
   margin-top: 20px;
+  margin-right: 90px;
 `
 
 const BannerSubTitle = styled.span`
