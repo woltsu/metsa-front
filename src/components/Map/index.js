@@ -54,7 +54,7 @@ const SimpleMap = ({points}) => {
     lat: 60.22474105,
     lng: 25.14025011
   }
-  let pointMarkers = <div></div>
+  let pointMarkers = null
   let lines = []
   
   if (points) {
