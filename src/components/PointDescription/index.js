@@ -39,7 +39,14 @@ const PointDescription = ({ point }) => {
             <div style={{ marginTop: '6px' }}>{point['kuvaus'].slice(0, 150).concat('...')}</div>
           </Desc>
           <img style={{ maxWidth: '100%', borderBottom: '2px solid #969faa' }} src="stories.png" />
-          <img style={{ maxWidth: '100%' }} src="lelel.png" />
+          <div style={{ padding: '8px 8px' }}>
+            <PointTitle>Photos</PointTitle>
+            <img style={{ maxWidth: '70px', float: 'right' }} src='take.png' />
+            <div style={{ width: '100%', textAlign: 'center', marginTop: '10px' }}>
+              <img style={{ maxWidth: '80%', maxHeight: '240px', borderRadius: '20px' }} src={point.image} />
+            </div>
+          </div>
+          {/* <img style={{ maxWidth: '100%' }} src="lelel.png" /> */}
         </PointContent>
       }
       bottomContent={<p>666</p>}
