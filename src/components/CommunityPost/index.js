@@ -22,7 +22,7 @@ const PostHeader = styled.div`
 
 const PostTitle = styled.span`
   padding: 0em 0.5em 0.2em 0.5em;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-style: bold;
 `
 
@@ -55,6 +55,7 @@ const LocationDiv = styled.div`
 
 const LocationIcon = styled.img`
   width: 1.5em;
+  margin-right: 5px;
 `
 
 

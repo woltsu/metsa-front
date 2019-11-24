@@ -49,11 +49,8 @@ const LinePoint = styled.div`
   background-color: black;
 `
 
-const SimpleMap = ({ points, onPointClick }) => {
-  let center = {
-    lat: 60.22474105,
-    lng: 25.14025011
-  }
+const SimpleMap = ({ points, onPointClick, hidePoints, customzoom }) => {
+  const [center, setCenter] = useState({ lat: 60.22474105, lng: 25.14025011 })
   const [pointMarkers, setPointMarkers] = useState([])
   const [lines, setLines] = useState([])
 
@@ -64,14 +61,14 @@ const SimpleMap = ({ points, onPointClick }) => {
   }, [points])
 
   const wut = () => {
-    center = calcCenter(points)
-    console.log(center)
+    setCenter(calcCenter(points))
     const pm = points.map((point, i) => {
       return (
         <LocationIcon
           onClick={() => {
             onPointClick(point.id)
           }}
+          style={point.size ? { width: '16px' } : {}}
           key={`${point.lat + point.lng}-${i}`}
           src={point.icon}
           lat={point.lat}
@@ -89,7 +86,7 @@ const SimpleMap = ({ points, onPointClick }) => {
       if (i === 0) {
         return <div></div>
       }
-      const n = 8
+      const n = 7
       const dlat = (points2[i].lat - points2[i - 1].lat) / n
       const dlng = (points2[i].lng - points2[i - 1].lng) / n
       for (var j = 1; j < n; j++) {
@@ -97,7 +94,8 @@ const SimpleMap = ({ points, onPointClick }) => {
           <LinePoint
             style={{
               width: '6px',
-              height: '6px'
+              height: '6px',
+              backgroundColor: 'white'
             }}
             lat={points2[i - 1].lat + j * dlat}
             lng={points2[i - 1].lng + j * dlng}
@@ -110,17 +108,17 @@ const SimpleMap = ({ points, onPointClick }) => {
     })
   }
 
-  const zoom = 13
+  const zoom = customzoom || 14
   return (
     <div style={{ height: '100vh', width: '100%' }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
-        defaultCenter={center}
         defaultZoom={zoom}
-        options={getMapOptions()}
+        center={center}
+        options={{ ...getMapOptions(), center }}
       >
         {pointMarkers}
-        {lines}
+        {!hidePoints && lines}
       </GoogleMapReact>
     </div>
   )

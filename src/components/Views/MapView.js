@@ -51,12 +51,18 @@ const MapView = () => {
     //const points = [{lat: 60.278168, lng: 24.596941, icon:'location.svg', text: 'Muinaisluola'}, {lat: 60.275972, lng:24.597269, icon:'cave.png',text: 'Hieno kivi'}, {lat:60.277539, lng:24.602004, icon:'location.svg', text:'Hieno kuusi'}]
     const points = []
     if (adventures) {
-      adventures[selectedRoute].adventure.res.forEach(p => {
+      adventures[selectedRoute].adventure.res.forEach((p, i) => {
+        const getIcon = (i) => {
+          if (i === 1) return 'kys.png'
+          else if (i === 3) return 'cave.svg'
+          else return 'location3.png'
+        }
         if (!p) return
         points.push({
           lat: Number(p.lat),
           lng: Number(p.lng),
-          icon: 'location.svg',
+          icon: getIcon(i),
+          size: i == 1 ? '14px' : null,
           text: 'test',
           id: p['Mjtunnus,N,10,0']
         })

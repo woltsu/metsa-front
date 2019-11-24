@@ -17,7 +17,6 @@ const Main = () => {
       <Route
         render={({ location }) => {
           const { pathname } = location
-          console.log('showProfile', showProfile)
           return (
             <>
               <Avatar onClick={() => setShowProfile(true)} />

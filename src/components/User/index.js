@@ -88,7 +88,7 @@ const User = ({ close }) => {
         <HeaderIcon onClick={close} float="right" src="cross.svg" />
       </UserHeader>
       <UserAvatarContainer>
-        <img style={{ width: '10em' }} src="otto.jpg" />
+        <img style={{ width: '10em' }} src="portrait_by_the_sea.jpg" />
       </UserAvatarContainer>
       <UserContent>
         <UserName>Otto Laitinen</UserName>

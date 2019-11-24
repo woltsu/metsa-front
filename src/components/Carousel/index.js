@@ -22,7 +22,7 @@ const CardHeader = styled.div`
   font-weight: bold;
   color: white;
   text-align: center;
-  padding-top: 24px;
+  padding: 24px 5px 0 5px;
 `
 
 const CardContent = styled.div`

@@ -8,7 +8,7 @@ function Page({ children, color, background, location: { state } }) {
     page: true,
     'page--prev': state && state.prev
   })
-  return <div className={cx} style={{ display: 'flex', flexDirection: 'column' }}>{children}</div>
+  return <div className={cx} style={{ zIndex: 5, display: 'flex', flexDirection: 'column' }}>{children}</div>
 }
 
 Page.propTypes = {
